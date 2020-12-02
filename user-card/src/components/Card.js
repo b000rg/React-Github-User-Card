@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import FollowerList from './FollowerList';
 
@@ -13,16 +14,38 @@ export default class Card extends React.Component {
     
     render() {
         return (
-            <div>
-                <h3>{this.username}</h3>
-                <img src={this.picture} alt={`${this.username} avatar`} />
+            <CardContainer>
+                <Username>{this.username}</Username>
+                <Avatar src={this.picture} alt={`${this.username} avatar`} />
                 {(this.name) ?
                     <p>{this.name}</p>
                 : null}
                 {(this.followers) ?
                     <FollowerList followers={this.followers} retrieveUser={this.props.retrieveUser} />
                 : null}
-            </div>
+            </CardContainer>
         );
     };
 };
+
+const CardContainer = styled.div`
+    /* display: inline-block; */
+    width: 25%;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: beige;
+    text-align: center;
+`;
+
+const Avatar = styled.img`
+    display: block;
+    max-width: 90%;
+    margin: 10px auto;
+`;
+
+const Username = styled.h3`
+    margin: 5px;
+    margin-bottom: 0;
+    font-size: 2em;
+`;
